@@ -37,7 +37,3 @@ jobs:
             dorobu/comfyui-r9700:latest
             dorobu/comfyui-r9700:rocm7.1
             dorobu/comfyui-r9700:${{ steps.date.outputs.date }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-
