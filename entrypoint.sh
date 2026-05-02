@@ -17,9 +17,10 @@ if [ -d "$COMFYUI_DIR/.git" ]; then
   cd "$COMFYUI_DIR" && git pull --ff-only || echo "  (already up to date)"
 else
   echo "► Cloning ComfyUI..."
-  git clone https://github.com/comfyanonymous/ComfyUI.git "$COMFYUI_DIR"
+  git clone https://github.com/comfyanonymous/ComfyUI.git /tmp/ComfyUI
+  cp -r /tmp/ComfyUI/. "$COMFYUI_DIR/"
+  rm -rf /tmp/ComfyUI
 fi
-
 # ── Install / update ComfyUI requirements ───────────────────────────────────
 echo "► Installing ComfyUI requirements..."
 cd "$COMFYUI_DIR"
