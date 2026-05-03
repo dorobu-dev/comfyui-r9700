@@ -2,6 +2,9 @@ services:
   comfyui-r9700:
     image: dorobu/comfyui-r9700:latest
     container_name: comfyui-r9700
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     devices:
       - /dev/kfd:/dev/kfd
       - /dev/dri:/dev/dri
@@ -12,12 +15,12 @@ services:
     ports:
       - "8188:8188"
     volumes:
-      - ./data/models:/workspace/ComfyUI/models
-      - ./data/output:/workspace/ComfyUI/output
-      - ./data/input:/workspace/ComfyUI/input
-      - ./data/custom_nodes:/workspace/ComfyUI/custom_nodes
-      - ./data/user:/workspace/ComfyUI/user
-      - ./data/miopen:/workspace/.miopen   # cache MIOpen kernels between restarts
+      - ./models:/workspace/ComfyUI/models
+      - ./output:/workspace/ComfyUI/output
+      - ./input:/workspace/ComfyUI/input
+      - ./custom_nodes:/workspace/ComfyUI/custom_nodes
+      - ./user:/workspace/ComfyUI/user
+      - ./miopen:/workspace/.miopen
     environment:
       - CLI_ARGS=          # e.g. --lowvram --disable-pinned-memory
     restart: unless-stopped

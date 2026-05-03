@@ -21,6 +21,7 @@ else
   cp -r /tmp/ComfyUI/. "$COMFYUI_DIR/"
   rm -rf /tmp/ComfyUI
 fi
+
 # ── Install / update ComfyUI requirements ───────────────────────────────────
 echo "► Installing ComfyUI requirements..."
 cd "$COMFYUI_DIR"
@@ -68,6 +69,7 @@ install_node() {
 mkdir -p /workspace/.miopen
 
 # ── Launch ───────────────────────────────────────────────────────────────────
+
 # Print ready message once ComfyUI responds
 (
   while ! curl -s http://127.0.0.1:8188 > /dev/null 2>&1; do
@@ -76,9 +78,12 @@ mkdir -p /workspace/.miopen
   echo ""
   echo "╔══════════════════════════════════════════╗"
   echo "║   ✅ ComfyUI is ready!                   ║"
-  echo "║   Open: http://127.0.0.1:8188            ║"
+  echo "║                                          ║"
+  echo "║   Open in browser:                       ║"
+  echo "║   http://127.0.0.1:8188                  ║"
   echo "╚══════════════════════════════════════════╝"
   echo ""
 ) &
+
 cd "$COMFYUI_DIR"
 exec python main.py --listen 0.0.0.0 ${CLI_ARGS}
