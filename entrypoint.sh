@@ -72,7 +72,7 @@ mkdir -p /workspace/.miopen
 
 # Print ready message once ComfyUI responds
 (
-  while ! curl -s http://127.0.0.1:8188 > /dev/null 2>&1; do
+  while ! curl -s http://0.0.0.0:8188 > /dev/null 2>&1; do
     sleep 2
   done
   echo ""
