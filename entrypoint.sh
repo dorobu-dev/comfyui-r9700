@@ -68,10 +68,17 @@ install_node() {
 mkdir -p /workspace/.miopen
 
 # ── Launch ───────────────────────────────────────────────────────────────────
-echo ""
-echo "► Starting ComfyUI..."
-echo "► Access at: http://localhost:8188"
-echo ""
-
+# Print ready message once ComfyUI responds
+(
+  while ! curl -s http://127.0.0.1:8188 > /dev/null 2>&1; do
+    sleep 2
+  done
+  echo ""
+  echo "╔══════════════════════════════════════════╗"
+  echo "║   ✅ ComfyUI is ready!                   ║"
+  echo "║   Open: http://127.0.0.1:8188            ║"
+  echo "╚══════════════════════════════════════════╝"
+  echo ""
+) &
 cd "$COMFYUI_DIR"
 exec python main.py --listen 0.0.0.0 ${CLI_ARGS}
